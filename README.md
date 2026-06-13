@@ -7,9 +7,6 @@
 ```bash
 curl -fsSL https://ardakircar.github.io/wine-deep/install.sh | bash
 ```
-
-That's it. No Microsoft popups. Wine Mono stays intact.
-
 ---
 
 ## What it installs
