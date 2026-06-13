@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>wine-deep — Wine Dependency Installer</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --code-bg: #0d1117;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .logo {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--accent2);
+    }
+    .logo span { color: var(--text); }
+    .tagline { color: var(--muted); margin-top: .4rem; font-size: 1.05rem; }
+
+    /* ── Main ── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── Install box ── */
+    .install-box {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+    .install-box h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: .8rem;
+    }
+    .code-row {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: .75rem 1rem;
+    }
+    .code-row code {
+      flex: 1;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: .92rem;
+      color: var(--green);
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: .4rem .9rem;
+      font-size: .82rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .copy-btn:hover { background: var(--accent2); }
+
+    /* ── Sections ── */
+    h2.section {
+      font-size: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .5rem;
+      margin: 2.5rem 0 1rem;
+    }
+    p { color: var(--muted); margin-bottom: .8rem; }
+    p strong { color: var(--text); }
+
+    /* ── Package grid ── */
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: .6rem;
+      margin: 1rem 0;
+    }
+    .pkg {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: .55rem 1rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: .88rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .pkg .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .pkg.special .dot { background: var(--yellow); }
+
+    /* ── Warning ── */
+    .notice {
+      background: #1c1a10;
+      border-left: 4px solid var(--yellow);
+      border-radius: 0 7px 7px 0;
+      padding: .9rem 1.2rem;
+      margin: 1rem 0;
+      color: #c9b46a;
+      font-size: .93rem;
+    }
+
+    /* ── Requirements ── */
+    .req-list { list-style: none; margin: .5rem 0 1rem; }
+    .req-list li { color: var(--muted); padding: .3rem 0; }
+    .req-list li::before { content: "→ "; color: var(--accent2); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">wine<span>-deep</span></div>
+  <div class="tagline">One-command Wine dependency installer for Linux & macOS</div>
+</header>
+
+<main>
+
+  <div class="install-box">
+    <h2>⚡ Install</h2>
+    <div class="code-row">
+      <code id="cmd">curl -fsSL https://ardakircar.github.io/wine-deep/install.sh | bash</code>
+      <button class="copy-btn" onclick="copyCmd()">Copy</button>
+    </div>
+  </div>
+
+  <h2 class="section">What it installs</h2>
+  <p>
+    <strong>wine-deep</strong> silently installs the following winetricks libraries into your existing Wine prefix.
+    No Microsoft popups. Wine Mono is preserved.
+  </p>
+
+  <div class="pkg-grid">
+    <div class="pkg"><span class="dot"></span>d3dcompiler_42</div>
+    <div class="pkg"><span class="dot"></span>d3dcompiler_43</div>
+    <div class="pkg"><span class="dot"></span>d3dcompiler_47</div>
+    <div class="pkg"><span class="dot"></span>d3dx11_43</div>
+    <div class="pkg"><span class="dot"></span>d3dx9</div>
+    <div class="pkg"><span class="dot"></span>dxvk</div>
+    <div class="pkg"><span class="dot"></span>quartz</div>
+    <div class="pkg"><span class="dot"></span>vkd3d</div>
+    <div class="pkg special"><span class="dot"></span>vcrun2019 (silent)</div>
+  </div>
+
+  <div class="notice">
+    ⚠️ <strong>vcrun2019</strong> is installed silently using <code>WINEDLLOVERRIDES</code> to prevent
+    the Microsoft .NET installer from replacing Wine Mono. This keeps your Wine prefix stable.
+  </div>
+
+  <h2 class="section">Requirements</h2>
+  <ul class="req-list">
+    <li>Wine must already be installed</li>
+    <li>winetricks (auto-installed if missing)</li>
+    <li>Linux (apt / pacman / dnf) or macOS (Homebrew)</li>
+  </ul>
+
+  <h2 class="section">How it works</h2>
+  <p>
+    The script detects your OS, checks for Wine and winetricks, then installs each package
+    using <strong>winetricks -q</strong> (quiet/unattended mode). At the end it prints a summary
+    of what succeeded and what (if anything) needs manual attention.
+  </p>
+
+  <h2 class="section">Source</h2>
+  <p>
+    The full source is available on
+    <a href="https://github.com/ArdaKircar/wine-deep" target="_blank">GitHub</a>.
+    Feel free to open issues or pull requests.
+  </p>
+
+</main>
+
+<footer>
+  wine-deep &nbsp;·&nbsp; MIT License &nbsp;·&nbsp;
+  <a href="https://github.com/ArdaKircar/wine-deep">GitHub</a>
+</footer>
+
+<script>
+  function copyCmd() {
+    const text = document.getElementById('cmd').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
