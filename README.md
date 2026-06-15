@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-curl -fsSL https://ardakircar.github.io/wine-deep/install.sh | bash
+curl -fsSL https://ardakircar.github.io/Wine-Deep/install.sh | bash
 ```
 ---
 
