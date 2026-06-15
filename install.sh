@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────
 #  wine-deep — Wine dependency installer
-#  https://ardakircar.github.io/wine-deep
+#  https://ardakircar.github.io/Wine-Deep
 # ─────────────────────────────────────────────
 
 set -e
