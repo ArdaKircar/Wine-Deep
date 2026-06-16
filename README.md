@@ -19,7 +19,7 @@ curl -fsSL https://ardakircar.github.io/Wine-Deep/install.sh | bash
 | `d3dx11_43` | Direct3D 11 helper library |
 | `d3dx9` | Direct3D 9 helper library |
 | `dxvk` | Vulkan-based D3D9/10/11 implementation |
-| `quartz` | DirectShow runtime |
+| `quartz.dll` | DirectShow runtime |
 | `vcrun2019` | Visual C++ 2019 runtime *(silent install)* |
 | `vkd3d` | D3D12 over Vulkan implementation |
 
